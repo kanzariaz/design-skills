@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --lime:#e4f95b; --wash:#c9dd35; --wash-deep:#b0c42c;
+    --lime:#e6f277; --wash:#d5e94b; --wash-deep:#b0c42c;
     --ink:#131609; --blue:#3629f0;
     --tag:#3f4a26; --desc:#55603a; --soft:#6a7040; --faint:#8a9548;
     --hair:#c6d94a; --hair-strong:#9fb03a; --paper:#fdfef2;
@@ -24,7 +24,7 @@
   a{color:inherit;text-decoration:none}
 
   .top{display:flex;justify-content:space-between;align-items:baseline}
-  .wordmark{font-family:var(--serif);font-weight:600;font-size:26px}
+  .wordmark{font-family:var(--serif);font-weight:600;font-size:34px}
   .byline{color:var(--soft);font-size:13px;font-weight:500}
   .tagline{font-family:var(--serif);font-style:italic;color:var(--tag);font-size:19px;line-height:1.65;margin:22px 0 36px;max-width:560px}
 
@@ -33,27 +33,27 @@
   .name-link{justify-self:start;display:inline-flex;align-items:baseline;cursor:pointer}
   .skill-name{font-family:var(--serif);font-size:21px;border-bottom:2px solid var(--blue);padding-bottom:3px}
   .details-cue{display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:13px;font-weight:600;
-    border-bottom:2px solid var(--blue);padding-bottom:3px;padding-left:12px;
+    padding-bottom:3px;padding-left:12px;
     opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease}
   .row:hover .details-cue,.name-link:focus-visible .details-cue{opacity:1;transform:none}
   @media (hover:none){.details-cue{opacity:1;transform:none}}
   .desc{color:var(--desc);font-size:14px;font-weight:500;line-height:1.6}
 
-  .cmd{background:var(--wash);border-radius:9px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .cmd code{color:var(--blue);font-family:var(--mono);font-size:12px;word-break:break-all}
+  .cmd{background:var(--wash);border:1px solid var(--wash-deep);border-radius:9px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .cmd code{color:var(--blue);font-family:var(--mono);font-size:12px;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
   .copy-btn{background:none;border:none;cursor:pointer;color:var(--blue);display:flex;align-items:center;gap:5px;
     font-family:var(--sans);font-size:12px;font-weight:600;padding:2px;flex-shrink:0}
   .copy-btn svg{display:block}
   .copy-btn:hover{color:var(--ink)}
 
-  .soon-head{margin-top:44px;padding-bottom:10px;border-bottom:1px solid var(--hair-strong);
+  .soon-head{margin-top:44px;padding-bottom:10px;
     color:var(--desc);font-size:12px;font-weight:600;letter-spacing:2.5px}
   .soon-row{display:grid;grid-template-columns:230px 1fr 400px;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--hair)}
   .soon-name{font-family:var(--serif);font-style:italic;font-size:20px}
   .soon-tag{justify-self:end;border:1.5px dashed var(--soft);color:var(--desc);border-radius:4px;
     padding:7px 18px;font-size:11px;font-weight:600;letter-spacing:1.5px}
 
-  .foot{margin-top:20px;border-top:1px solid var(--hair);padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .foot{margin-top:20px;padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .foot .gh{color:var(--soft);font-size:12px;font-weight:500}
   .foot .gh:hover{color:var(--blue)}
   .foot .note{font-family:var(--serif);font-style:italic;color:var(--soft);font-size:13px}
