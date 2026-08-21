@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills — by kanzariaz</title>
+<meta name="description" content="Product and Design workflow skills for Claude Code. Explore an idea freely without being rushed into building.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime:#e4f95b; --wash:#c9dd35; --wash-deep:#b0c42c;
+    --ink:#131609; --blue:#3629f0;
+    --tag:#3f4a26; --desc:#55603a; --soft:#6a7040; --faint:#8a9548;
+    --hair:#c6d94a; --hair-strong:#9fb03a; --paper:#fdfef2;
+    --serif:"Fraunces",Georgia,serif; --sans:"Quicksand",-apple-system,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--lime)}
+  body{background:var(--lime);color:var(--ink);font-family:var(--sans);min-height:100vh}
+  .page{max-width:1100px;margin:0 auto;padding:48px 40px 32px}
+  a{color:inherit;text-decoration:none}
+
+  .top{display:flex;justify-content:space-between;align-items:baseline}
+  .wordmark{font-family:var(--serif);font-weight:600;font-size:26px}
+  .byline{color:var(--soft);font-size:13px;font-weight:500}
+  .tagline{font-family:var(--serif);font-style:italic;color:var(--tag);font-size:19px;line-height:1.65;margin:22px 0 36px;max-width:560px}
+
+  .table{border-top:1px solid var(--ink)}
+  .row{display:grid;grid-template-columns:230px 1fr 400px;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--hair)}
+  .name-link{justify-self:start;display:inline-flex;align-items:baseline;cursor:pointer}
+  .skill-name{font-family:var(--serif);font-size:21px;border-bottom:2px solid var(--blue);padding-bottom:3px}
+  .details-cue{display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:13px;font-weight:600;
+    border-bottom:2px solid var(--blue);padding-bottom:3px;padding-left:12px;
+    opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease}
+  .row:hover .details-cue,.name-link:focus-visible .details-cue{opacity:1;transform:none}
+  @media (hover:none){.details-cue{opacity:1;transform:none}}
+  .desc{color:var(--desc);font-size:14px;font-weight:500;line-height:1.6}
+
+  .cmd{background:var(--wash);border-radius:9px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .cmd code{color:var(--blue);font-family:var(--mono);font-size:12px;word-break:break-all}
+  .copy-btn{background:none;border:none;cursor:pointer;color:var(--blue);display:flex;align-items:center;gap:5px;
+    font-family:var(--sans);font-size:12px;font-weight:600;padding:2px;flex-shrink:0}
+  .copy-btn svg{display:block}
+  .copy-btn:hover{color:var(--ink)}
+
+  .soon-head{margin-top:44px;padding-bottom:10px;border-bottom:1px solid var(--hair-strong);
+    color:var(--desc);font-size:12px;font-weight:600;letter-spacing:2.5px}
+  .soon-row{display:grid;grid-template-columns:230px 1fr 400px;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--hair)}
+  .soon-name{font-family:var(--serif);font-style:italic;font-size:20px}
+  .soon-tag{justify-self:end;border:1.5px dashed var(--soft);color:var(--desc);border-radius:4px;
+    padding:7px 18px;font-size:11px;font-weight:600;letter-spacing:1.5px}
+
+  .foot{margin-top:20px;border-top:1px solid var(--hair);padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .foot .gh{color:var(--soft);font-size:12px;font-weight:500}
+  .foot .gh:hover{color:var(--blue)}
+  .foot .note{font-family:var(--serif);font-style:italic;color:var(--soft);font-size:13px}
+
+  /* detail view */
+  .back{color:var(--blue);font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .back:hover{color:var(--ink)}
+  .d-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+  .d-name{font-family:var(--serif);font-weight:600;font-size:42px;border-bottom:3px solid var(--blue);padding-bottom:6px;display:inline-block}
+  .d-pitch{font-family:var(--serif);font-style:italic;color:var(--tag);font-size:18px;line-height:1.65;margin:20px 0 24px;max-width:620px}
+  .d-cmd{display:inline-flex;max-width:100%}
+  .label{color:var(--desc);font-size:12px;font-weight:600;letter-spacing:2px;margin:36px 0 12px}
+  .card{background:var(--paper);border-radius:12px;padding:24px 28px;max-width:820px}
+  .example{font-family:var(--mono);font-size:13px;line-height:2;color:var(--tag);white-space:pre-wrap;word-break:break-word}
+  .example .you{color:var(--blue);font-weight:600}
+  .example .cl{color:var(--faint)}
+  .md{font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--tag);white-space:pre-wrap;word-break:break-word}
+  .d-foot{margin-top:36px;border-top:1px solid var(--hair);padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .d-foot a{color:var(--blue);font-size:14px;font-weight:600}
+  .d-foot a:hover{color:var(--ink)}
+
+  @media (max-width:820px){
+    .page{padding:32px 22px 24px}
+    .row,.soon-row{grid-template-columns:1fr;gap:10px;padding:20px 0}
+    .cmd{width:100%}
+    .soon-tag{justify-self:start}
+    .tagline{font-size:17px}
+    .d-name{font-size:32px}
+  }
+</style>
+</head>
+<body>
+<div class="page" id="app"></div>
+
+<script>
+const REPO = "kanzariaz/skills";
+const GH_URL = "https://github.com/kanzariaz/skills";
+
+const SKILLS = [
+  {
+    slug: "list-it",
+    desc: 'collect changes as a list; build nothing until "execute"',
+    pitch: 'The conveyor belt. Dictate changes faster than you want them executed — every item is captured, read back, and numbered. Nothing is built, planned, or even researched until you say "execute."',
+    example: [
+      ["you", "/list-it make the header sticky"],
+      ["cl", "1. Make the header sticky. Anything else?"],
+      ["you", "/list-it actually also swap the font to Inter, and kill the modal"],
+      ["cl", "1. Sticky header  2. Body font → Inter  3. Remove the modal. More?"],
+      ["you", "execute"],
+      ["cl", "Working through 1–3 in order… done + what to check, by item."]
+    ],
+    md: null
+  },
+  {
+    slug: "explore",
+    desc: "a sandbox lane that never leaks into your queue",
+    pitch: 'The sandbox. Kick an idea around — options, mockups, trade-offs, honest pushback — without anything landing on your task list, in your code, or in your ledgers. A picked direction is still not permission to build: only "execute" is.',
+    example: [
+      ["you", "/explore should onboarding have demo tasks?"],
+      ["cl", "Three options with trade-offs — demo tasks teach by example but violate “empty list = yours”… honest take: ghost copy beats demo tasks because…"],
+      ["you", "agreed, drop demo tasks. park the ghost copy idea"],
+      ["cl", "Parked. Nothing was built — exploring stays free."]
+    ],
+    md: null
+  },
+  {
+    slug: "mock-it",
+    desc: "design variants inline, in your project's real tokens",
+    pitch: "The sketchpad. Say “mock up X” and get 2–4 labeled variants rendered inline in the chat — drawn in your project's real design tokens, with a one-line trade-off under each. Then it asks which direction to take, and builds nothing until you pick.",
+    example: [
+      ["you", "/mock-it the empty state — a few options"],
+      ["cl", "Option A — Ghost copy (quietest…)  Option B — Illustration (warmest…)  Option C — First-run checklist (busiest…). Which direction?"],
+      ["you", "A, but with the headline from C"],
+      ["cl", "Rendered the blend — still exploration, nothing built yet."]
+    ],
+    md: null
+  }
+];
+
+const SOON = [
+  { name: "park-it", desc: "the durable backlog — not now, not never; unparking resolves, never deletes" },
+  { name: "design-eval", desc: "audits a component against your design system — judges rendered pixels, not token references" }
+];
+
+const MD = {};
+MD["list-it"] = `---
+name: list-it
+description: Start collecting a numbered list of changes the user wants, WITHOUT executing any of them. Use when the user invokes /list-it or says "start a list", "let me list the changes", "add to the list". Stay in collection mode — echo the running list back after each addition and ask if there's more — until the user explicitly says to execute/go/start, and only then begin working through the items.
+---
+
+# List — collect first, execute on "go"
+
+The user dictates changes faster than they want them executed — often by voice, in
+bursts, while looking at the running product. This skill separates *capturing* the
+work from *doing* the work so nothing gets lost and nothing starts prematurely.
+
+## Collection mode (starts immediately on invocation)
+
+1. ONE running list per session: the first /list-it opens it; every later
+   /list-it invocation APPENDS to it (the user invokes the skill per item —
+   that's the normal rhythm, not a reset). A list only resets after it has been
+   executed. If the user's invocation contains items, capture them.
+   The user may interleave /explore rounds while the list is open — exploration
+   never touches the list; its outcome joins only when the user says so.
+2. After every user message, restate the FULL numbered list so far — each item as one
+   short line in your own words (confirm interpretation, especially for voice-garbled
+   input; if an item is ambiguous, note your reading in parentheses rather than
+   asking a blocking question).
+3. Then ask, briefly, if there's anything else — vary the phrasing, keep it to one
+   line. NEVER prompt for execution ("or execute?", "ready to run?") — the
+   execute command always comes from the user unprompted; the only question
+   collection mode ever asks is whether there's more.
+4. While collecting, do NOT: edit files, run commands, plan implementations, or
+   research the codebase. Reading a file is allowed only if needed to understand what
+   an item refers to. Do not evaluate or push back on items yet — capture faithfully.
+   (Exception: if an item is impossible or conflicts with a locked decision in the
+   project's context files (CLAUDE.md), flag it inline in one sentence, keep it on
+   the list marked "⚠", and move on.)
+5. **Decided work only.** An item joins the list only when its design process is
+   complete — a direction/option has been explicitly chosen by the user. Features
+   still being explored (mockups under review, options not yet picked) stay OFF the
+   list; track them in conversation and add them the moment the user picks a
+   direction. If the user names something undecided, say it's noted but not listed
+   yet.
+6. Items may be edits to earlier items ("actually make that blue, not green") —
+   update the existing item in place, don't append a duplicate.
+
+## Execution trigger
+
+Stay in collection mode until the user clearly says to proceed: "go", "execute",
+"that's all, do it", "start", or equivalent. "That's all" alone means the list is
+complete — confirm the final list and ask whether to execute now.
+
+## Discard
+
+"Discard the list" (or "scrap it", "forget the list" when clearly final, not a
+pause) empties the list without executing anything. Confirm what was dropped in
+one line. Items that carried decisions (a picked option, a chosen direction) do
+NOT survive the discard as recorded decisions — if the user wants one kept, it
+must be re-listed or recorded wherever the project tracks deferred work; offer
+that only when a dropped item contained a real decision. A discarded list resets
+the session's list — the next /list-it opens a fresh one.
+
+## Execution mode
+
+1. Restate the final list once.
+2. Work through the items in order, following the project's normal working
+   agreements. Track progress with the task tools if the list is long.
+3. If items interact (one change makes another moot or conflicts), say so when you
+   reach it and make the sensible call rather than stopping.
+4. Finish with a "done + what to check" handoff, organized by list item number.`;
+
+MD["explore"] = `---
+name: explore
+description: Open an idea-exploration lane that runs in PARALLEL with a running /list-it list. Use when the user invokes /explore or says "let me explore X first", "before adding this, let's look at options". Nothing gets built, listed, or committed from exploration — it produces options, mockups, and trade-offs; the outcome only becomes a /list-it item (or a parked note) when the user explicitly says so.
+---
+
+# explore — think out loud without committing anything
+
+The user often has a /list-it list running (decided work, queued) and wants to
+kick an idea around WITHOUT it landing on that list. /explore is the sandbox
+lane; the list is the conveyor belt. They run in parallel and never leak into
+each other.
+
+## While exploring
+
+1. Treat the topic as undecided by definition. Offer options, trade-offs,
+   references, quick /mock-it rounds, napkin math — whatever moves the idea.
+   Push back honestly; exploration is where disagreement is cheapest.
+2. Do NOT: add anything to the /list-it list, edit code, or create durable
+   records. Reading code/data to inform the exploration is fine.
+3. If a running list exists, leave it exactly as it stands — restate it only
+   if the user asks. Interleaving is expected: an /explore round can happen
+   between two /list-it item additions.
+4. Keep each exploration scoped to its topic; if the user opens a second
+   thread, name them when summarizing so nothing blurs.
+
+## Leaving exploration
+
+**"Execute" is the verb that ends exploring.** Until the user says "execute"
+(or an unmistakable equivalent), stay in exploring mode — even after a
+direction is picked, a plan is approved, or the user sounds enthusiastic
+("let's do that", "let's start with A" = a pick, NOT permission to build).
+A pick narrows the exploration; only "execute" converts it into real work.
+
+An exploration ends one of three ways — always confirm which:
+- **Picked** → the user states a direction; offer the one-liner for /list-it
+  (or for the project's deferred-work tracker if it's for later) and add it
+  only on their word.
+- **Parked** → worth keeping, not now: record it wherever the project keeps
+  deferred work (a backlog file, an issue tracker, a parked list), with the
+  exploration's artifacts/mockups linked.
+- **Dropped** → note the dead end in one line (dead ends are findings too),
+  nothing recorded unless the user wants it.`;
+
+MD["mock-it"] = `---
+name: mock-it
+description: Mock up a few design options INSIDE the chat (inline visuals, not artifacts) when the user says "mock up X", "show me some options for X", or invokes /mock-it. Renders 2–4 labeled variants of a screen/component in the project's real design tokens, then asks which direction to pursue.
+---
+
+# Mockup — quick visual options, in the chat
+
+The user explores design directions by looking, not reading. When they ask for a
+mockup, produce a small set of visual options inline in the conversation — NOT as a
+published artifact (artifacts are for full decision documents; this skill is for
+fast looks).
+
+## How
+
+1. 2–4 variants, each labeled (Option A/B/C + a two-word name) with a one-line
+   trade-off under each.
+2. Render them with the inline visualization tool so they appear in the chat.
+   Frame the mock at the target's real proportions — a phone frame at device
+   proportions for mobile apps, a browser-shaped panel for web.
+3. Draw in the project's REAL design tokens — discover them fresh if unsure
+   (theme files, DesignSystem/tokens modules, tailwind config, asset catalogs,
+   CSS custom properties). Mock in the product's default appearance (dark mode
+   if the product defaults to dark) unless asked otherwise, and verify color
+   values against the source when fidelity matters.
+4. Real copy, never lorem; honor the project's locked product decisions and
+   vocabulary (check CLAUDE.md / context docs before inventing labels).
+5. End by asking which option (or which pieces of several) to take forward. A
+   mockup round is EXPLORATION — nothing goes on the /list-it list and nothing gets
+   built from it until the user picks a direction.
+6. Only escalate to an artifact if the user asks for one (e.g. wants to share it or
+   keep it as a decision record).`;
+
+SKILLS.forEach(s => s.md = MD[s.slug]);
+
+const COPY_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>';
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function cmdFor(slug){return "npx skills add " + REPO + " --skill=" + slug}
+
+function cmdBox(slug){
+  return '<span class="cmd"><code>' + cmdFor(slug) + '</code>' +
+    '<button class="copy-btn" data-cmd="' + cmdFor(slug) + '" aria-label="Copy install command for ' + slug + '">' + COPY_SVG + '</button></span>';
+}
+
+function listView(){
+  let h = '<header class="top"><a class="wordmark" href="#/">Skills</a><span class="byline">by kanzariaz</span></header>';
+  h += '<p class="tagline">Product and Design workflow skills for Claude Code. Explore an idea freely without being rushed into building.</p>';
+  h += '<div class="table">';
+  for (const s of SKILLS){
+    h += '<div class="row">' +
+      '<a class="name-link" href="#/' + s.slug + '"><span class="skill-name">' + s.slug + '</span>' +
+      '<span class="details-cue">details <span aria-hidden="true">→</span></span></a>' +
+      '<span class="desc">' + esc(s.desc) + '</span>' + cmdBox(s.slug) + '</div>';
+  }
+  h += '</div>';
+  h += '<div class="soon-head">COMING SOON</div>';
+  for (const s of SOON){
+    h += '<div class="soon-row"><span class="soon-name">' + s.name + '</span>' +
+      '<span class="desc">' + esc(s.desc) + '</span><span class="soon-tag">SOON</span></div>';
+  }
+  h += '<footer class="foot"><a class="gh" href="' + GH_URL + '">github.com/' + REPO + '</a>' +
+    '<span class="note">read each skill.md before installing</span></footer>';
+  return h;
+}
+
+function detailView(s){
+  const i = SKILLS.indexOf(s);
+  const next = SKILLS[(i + 1) % SKILLS.length];
+  let ex = "";
+  for (const [who, line] of s.example){
+    ex += '<span class="' + who + '">' + (who === "you" ? "you:" : "claude:") + '</span> ' + esc(line) + "\n";
+  }
+  return '<div class="d-head"><a class="back" href="#/"><span aria-hidden="true">←</span> all skills</a>' +
+    '<span class="byline">by kanzariaz</span></div>' +
+    '<h1 class="d-name">' + s.slug + '</h1>' +
+    '<p class="d-pitch">' + esc(s.pitch) + '</p>' +
+    '<span class="d-cmd">' + cmdBox(s.slug) + '</span>' +
+    '<div class="label">IN PRACTICE</div>' +
+    '<div class="card"><div class="example">' + ex + '</div></div>' +
+    '<div class="label">SKILL.MD</div>' +
+    '<div class="card"><div class="md">' + esc(s.md) + '</div></div>' +
+    '<div class="d-foot"><a href="' + GH_URL + '/blob/main/skills/' + s.slug + '/SKILL.md">view on GitHub</a>' +
+    '<a href="#/' + next.slug + '">next: ' + next.slug + ' →</a></div>';
+}
+
+function render(){
+  const app = document.getElementById("app");
+  const slug = (location.hash || "#/").replace(/^#\//, "");
+  const skill = SKILLS.find(s => s.slug === slug);
+  app.innerHTML = skill ? detailView(skill) : listView();
+  document.title = skill ? skill.slug + " — Skills" : "Skills — by kanzariaz";
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".copy-btn");
+  if (!btn) return;
+  navigator.clipboard.writeText(btn.dataset.cmd).then(() => {
+    const old = btn.innerHTML;
+    btn.innerHTML = "copied ✓";
+    setTimeout(() => { btn.innerHTML = old; }, 1400);
+  });
+});
+
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
