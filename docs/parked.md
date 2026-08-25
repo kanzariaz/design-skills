@@ -2,6 +2,10 @@
 
 The durable backlog for this project: open decisions and deferred work. Items leave by resolution (edited to a one-line outcome), never silent deletion.
 
+### License choice — parked 2026-08-25
+
+The repo carries the MIT license inherited from its first iteration (Copyright (c) 2026 Kanza Riaz) — maximally permissive: anyone may use, copy, modify, and redistribute the skills and site code, including commercially, as long as the copyright notice stays. Open question: keep MIT or switch to something more restrictive (e.g. no commercial reuse — CC BY-NC for content, or PolyForm Noncommercial). Claude's recommendation on record: keep MIT — it matches the "please take these skills" purpose of the project. Swapping later is possible but only applies forward, so deciding sooner is better.
+
 ### npx copy-button + toast — parked 2026-08-25
 
 Switch the site's Copy Skill buttons from copying raw SKILL.md to copying the one-line installer (`npx skills add kanzariaz/design-skills -s <skill>`), with a toast confirming "/skill install command copied — paste it into Claude Code or your terminal."
