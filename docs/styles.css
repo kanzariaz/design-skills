@@ -1,0 +1,302 @@
+/* Design tokens — from the QuickWins Figma (Site — final lime) */
+:root {
+  /* Color styles */
+  --color-ground: #f7fddd;      /* Light Lime (lightened from Figma #f3fccf) */
+  --color-hairline: #dfea9a;    /* Lime */
+  --color-ink: #131609;         /* Dark Green */
+  --color-olive: #55603a;       /* Olive */
+  --color-olive-deep: #31381f;  /* Deep Olive — subheading, row descriptions */
+  --color-pill: #060606;
+  --color-pill-copied: #2b3316;
+  --color-pill-label: var(--color-ground); /* pill label/icon matches the page ground */
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --display-variation: 'SOFT' 0, 'WONK' 0; /* Fraunces axes — must stay in the fonts URL too */
+
+  /* Text styles */
+  --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
+  --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
+  --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
+  --text-label: 600 16px/1.4 var(--font-body);
+  --text-section-label: 700 18px/1.4 var(--font-body);
+  --text-footer-label: 600 18px/1.4 var(--font-body);
+  --text-body: 500 16px/1.4 var(--font-body);
+  --text-button: 600 14px/1 var(--font-body);
+  --tracking-label: 0.09em;
+
+  --content-width: 800px;       /* max width of every section's content */
+  --page-pad-x: 56px;
+  --page-pad-top: 60px;
+  --page-pad-bottom: 120px;
+  --section-gap: 91px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--color-ground);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--color-olive); text-decoration: none; }
+a:hover { color: var(--color-ink); }
+
+/* ---- Page column ---- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--section-gap);
+  width: 100%;
+  padding: var(--page-pad-top) var(--page-pad-x) var(--page-pad-bottom);
+}
+
+.hero,
+.skills {
+  width: 100%;
+  max-width: var(--content-width);
+}
+
+/* ---- Hero ---- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.hero__title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0 13px;
+}
+
+.hero__title {
+  margin: 0;
+  font: var(--text-title);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-ink);
+}
+
+.hero__subtitle {
+  margin: 0;
+  max-width: 80%;
+  font: var(--text-subtitle);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-olive-deep);
+  text-wrap: pretty;
+}
+
+/* ---- Skills sections ---- */
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.skills__label {
+  margin: 0;
+  font: var(--text-section-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-ink);
+}
+
+.skills__table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid var(--color-hairline);
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.skill-row__name {
+  margin: 0;
+  width: 160px;
+  flex-shrink: 0;
+  font: var(--text-skill-name);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.skill-row__desc {
+  margin: 0;
+  flex: 1 0 0;
+  min-width: 0;
+  font: var(--text-body);
+  font-size: 17px;
+  color: var(--color-olive-deep);
+}
+
+.skill-row__action {
+  display: flex;
+  justify-content: flex-end;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  border-radius: 24px;
+  font: var(--text-button);
+  white-space: nowrap;
+}
+
+.btn__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--copy {
+  gap: 5px;
+  padding: 12px 23px 12px 20px;
+  background: var(--color-pill);
+  color: var(--color-pill-label);
+  border: 0;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 80ms ease;
+}
+
+.btn--copy:hover {
+  background: var(--color-hairline);
+  color: var(--color-ink);
+  box-shadow: inset 0 0 0 1.5px var(--color-ink);
+}
+.btn--copy:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+.btn--copy:active { transform: scale(0.98); }
+.btn--copy.is-copied { background: var(--color-pill-copied); }
+
+.btn--soon {
+  padding: 12px 20px;
+  border: 1px dashed var(--color-ink);
+  color: var(--color-ink);
+  background: transparent;
+  transition: background 120ms ease;
+}
+
+.btn--soon:hover { background: var(--color-hairline); }
+
+/* ---- Footer ---- */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 47px var(--page-pad-x) var(--page-pad-bottom); /* 47px top is a Figma one-off */
+}
+
+.footer__inner {
+  width: 100%;
+  max-width: var(--content-width);
+}
+
+.footer__row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+}
+
+.footer__label {
+  margin: 0;
+  font: var(--text-footer-label);
+  color: var(--color-olive);
+  white-space: nowrap;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-olive);
+}
+
+.social:hover { color: var(--color-ink); }
+
+.social:hover .social__handle {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.social__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-olive);
+  transition: color 120ms ease;
+}
+
+.social:hover .social__icon { color: var(--color-ink); }
+
+.social__handle {
+  font: var(--text-label);
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 720px) {
+  :root { --page-pad-x: 24px; --section-gap: 64px; }
+
+  .page { padding-top: 72px; }
+
+  .hero__subtitle {
+    max-width: none;
+    line-height: 1.45;
+  }
+
+  .skill-row {
+    flex-wrap: wrap;
+    row-gap: 12px;
+    padding: 16px 0;
+  }
+
+  .skill-row__name { width: 100%; }
+
+  .skill-row__desc { flex: 1 1 100%; font-size: 16px; }
+
+  .skills__label {
+    font-size: clamp(14px, 3.8vw, 16px);
+    letter-spacing: 0.18em;
+  }
+
+  .skill-row__action { width: 100%; justify-content: flex-start; }
+
+  .socials { gap: 20px; }
+
+  .footer { padding-bottom: 72px; }
+}

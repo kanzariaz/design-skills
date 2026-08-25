@@ -1,0 +1,44 @@
+{
+  "sections": [
+    {
+      "label": "DESIGN EXPLORATION",
+      "skills": [
+        {
+          "id": "list-it",
+          "name": "/list-it",
+          "description": "collect action items in a running list; build only when you explicitly ask to execute",
+          "status": "copy"
+        },
+        {
+          "id": "explore",
+          "name": "/explore",
+          "description": "a thinking-out-loud sandbox that runs parallel to your working list without mixing context; topics stay undecided by definition",
+          "status": "copy"
+        },
+        {
+          "id": "mock-it",
+          "name": "/mock-it",
+          "description": "explore multiple visual iterations in the same chat window without having to click a link to review a detailed artifact",
+          "status": "copy"
+        },
+        {
+          "id": "park-it",
+          "name": "/park-it",
+          "description": "park explored decisions with context for later; summon the backlog when you're ready to tackle it",
+          "status": "soon"
+        }
+      ]
+    },
+    {
+      "label": "DESIGN EXECUTION",
+      "skills": [
+        {
+          "id": "design-eval",
+          "name": "/design-eval",
+          "description": "audit a component, a page, or an entire flow against your design system; resolve inconsistencies, add new components, styles or variants",
+          "status": "soon"
+        }
+      ]
+    }
+  ]
+}
