@@ -10,8 +10,24 @@ let toastTimer = null;
 
 function showToast(title, text) {
   const toast = document.getElementById('toast');
-  toast.querySelector('.toast__title').textContent = title;
-  toast.querySelector('.toast__text').textContent = text;
+  const titleEl = toast.querySelector('.toast__title');
+  const textEl = toast.querySelector('.toast__text');
+
+  // The slash gets its own span so the subtext can left-align with the
+  // skill name's first letter instead of the slash.
+  titleEl.textContent = '';
+  let slashWidth = 0;
+  if (title.startsWith('/')) {
+    const slash = document.createElement('span');
+    slash.textContent = '/';
+    titleEl.append(slash, document.createTextNode(title.slice(1)));
+    slashWidth = slash.offsetWidth;
+  } else {
+    titleEl.textContent = title;
+  }
+  textEl.textContent = text;
+  textEl.style.marginLeft = `${slashWidth}px`;
+
   toast.classList.add('is-visible');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 8000);
