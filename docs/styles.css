@@ -215,7 +215,7 @@ a:hover { color: var(--color-ink); }
   background: var(--color-ground);
   border: 1px solid var(--color-toast-stroke);
   border-radius: 10px;
-  padding: 18px 30px 20px 18px;
+  padding: 18px 30px 22px 18px;
   white-space: nowrap;
   box-shadow: 0 4px 14px rgba(49, 56, 31, 0.15), 0 1px 4px rgba(49, 56, 31, 0.08); /* deep-olive-tinted to sit in the lime ambience */
   pointer-events: none;
@@ -237,7 +237,9 @@ a:hover { color: var(--color-ink); }
 .toast__text {
   display: block;
   margin-top: 7px;
-  font: 500 16px/1.2 var(--font-body); /* body size */
+  max-width: 350px;
+  white-space: normal;
+  font: 500 16px/1.35 var(--font-body); /* body size */
   color: var(--color-olive-deep);
 }
 
