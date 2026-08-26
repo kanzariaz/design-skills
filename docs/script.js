@@ -56,10 +56,10 @@ function renderRow(skill) {
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(`npx skills add ${REPO} -s ${skill.id}`);
-        showToast(`${skill.name} copied`, "paste it into Claude Code or your terminal, let it run, and you're ready to use it.");
+        showToast(`${skill.name} copied`, "Paste it into Claude Code or your terminal, let it run, and you're ready to use it.");
         window.tdSignal?.('copySkill', { skill: skill.id });
       } catch {
-        showToast('Copy failed', 'try again');
+        showToast('Copy failed', 'Try again');
       }
     });
     action.appendChild(btn);
