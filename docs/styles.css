@@ -8,7 +8,7 @@
   --color-olive-deep: #31381f;  /* Deep Olive — subheading, row descriptions */
   --color-pill: #060606;
   --color-pill-label: var(--color-ground); /* pill label/icon matches the page ground */
-  --color-ground-bright: #fbfee9; /* toast surface — one step brighter than the ground */
+  --color-ground-bright: #fdfff1; /* toast surface — two steps brighter than the ground */
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -227,7 +227,7 @@ a:hover { color: var(--color-ink); }
 .toast__title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.2;
   font-variation-settings: var(--display-variation);
   color: var(--color-ink);
@@ -236,7 +236,7 @@ a:hover { color: var(--color-ink); }
 .toast__text {
   display: block;
   margin-top: 3px;
-  font: 500 13px/1.2 var(--font-body);
+  font: 500 14px/1.2 var(--font-body); /* button size */
   color: var(--color-olive-deep);
 }
 

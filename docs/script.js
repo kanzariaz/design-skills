@@ -14,7 +14,7 @@ function showToast(title, text) {
   toast.querySelector('.toast__text').textContent = text;
   toast.classList.add('is-visible');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 4000);
+  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 8000);
 }
 
 function renderRow(skill) {
