@@ -5,7 +5,7 @@
   --color-hairline: #d5ddb4;    /* muted sage hairline */
   --color-ink: #171a0e;         /* near-black green ink */
   --color-olive: #565c40;       /* muted olive — footer links/labels */
-  --color-olive-deep: #3a4128;  /* secondary text — subheading, row descriptions */
+  --color-olive-deep: #2a2f1b;  /* secondary text — subheading, row descriptions */
   --color-pill: #0a0c05;
   --color-pill-label: var(--color-ground); /* pill label/icon matches the ground */
   --color-toast-stroke: #e3e9cc;  /* barely-there sage edge on the toast */
@@ -15,11 +15,11 @@
   --display-variation: 'SOFT' 0, 'WONK' 0; /* Fraunces axes — must stay in the fonts URL too */
 
   /* Text styles */
-  --text-title: 700 clamp(15px, 4vw, 22px)/1.23 var(--font-display);
+  --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
   --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
   --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
   --text-label: 600 16px/1.4 var(--font-display);
-  --text-section-label: 700 18px/1.4 var(--font-body);
+  --text-section-label: 600 18px/1.4 var(--font-body);
   --text-footer-label: 600 18px/1.4 var(--font-display);
   --text-body: 400 16px/1.4 var(--font-display);
   --text-button: 600 14px/1 var(--font-body);
