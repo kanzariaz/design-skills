@@ -52,7 +52,7 @@ function renderRow(skill) {
     const btn = document.createElement('button');
     btn.className = 'btn btn--copy';
     btn.type = 'button';
-    btn.innerHTML = COPY_ICON + '<span class="btn__label">Copy</span>';
+    btn.innerHTML = COPY_ICON + '<span class="btn__label btn__label--desktop">Copy Skill</span><span class="btn__label btn__label--mobile">Copy</span>';
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(`npx skills add ${REPO} -s ${skill.id}`);
@@ -66,7 +66,7 @@ function renderRow(skill) {
   } else {
     const soon = document.createElement('span');
     soon.className = 'btn btn--soon';
-    soon.textContent = 'Coming Soon';
+    soon.innerHTML = '<span class="btn__label--desktop">Coming Soon</span><span class="btn__label--mobile">Soon</span>';
     action.appendChild(soon);
   }
 
