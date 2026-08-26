@@ -170,7 +170,7 @@ a:hover { color: var(--color-ink); }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 132px;
+  min-width: 104px; /* compact "Copy" pill; Coming Soon still sizes itself */
   border-radius: 24px;
   font: var(--text-button);
   white-space: nowrap;

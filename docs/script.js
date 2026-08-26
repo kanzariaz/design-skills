@@ -52,7 +52,7 @@ function renderRow(skill) {
     const btn = document.createElement('button');
     btn.className = 'btn btn--copy';
     btn.type = 'button';
-    btn.innerHTML = COPY_ICON + '<span class="btn__label">Copy Skill</span>';
+    btn.innerHTML = COPY_ICON + '<span class="btn__label">Copy</span>';
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(`npx skills add ${REPO} -s ${skill.id}`);
