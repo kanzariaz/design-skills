@@ -342,6 +342,7 @@ a:hover { color: var(--color-ink); }
 
   .toast {
     bottom: 24px;
+    left: 16px;
     right: 16px;
   }
 
