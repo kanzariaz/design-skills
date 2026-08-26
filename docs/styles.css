@@ -328,12 +328,13 @@ a:hover { color: var(--color-ink); }
   .skill-row {
     flex-wrap: wrap;
     row-gap: 12px;
-    padding: 16px 0;
+    padding: 24px 0;
+    border-bottom: 0; /* only each section's top hairline survives on mobile */
   }
 
   .skill-row__name { width: 100%; }
 
-  .skill-row__desc { flex: 1 1 100%; font-size: 17px; }
+  .skill-row__desc { flex: 1 1 100%; font-size: 19px; }
 
   .skills__label {
     font-size: clamp(14px, 3.8vw, 16px);
@@ -346,7 +347,11 @@ a:hover { color: var(--color-ink); }
     right: 16px;
   }
 
-  .skill-row__action { width: 100%; justify-content: flex-start; }
+  .skill-row__action {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 6px; /* 12px row-gap + 6px = 18px below the description */
+  }
 
   .socials { gap: 20px; }
 
