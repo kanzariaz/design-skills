@@ -7,8 +7,8 @@
   --color-olive: #55603a;       /* Olive */
   --color-olive-deep: #31381f;  /* Deep Olive — subheading, row descriptions */
   --color-pill: #060606;
-  --color-pill-copied: #2b3316;
   --color-pill-label: var(--color-ground); /* pill label/icon matches the page ground */
+  --color-lime-soft: #e6efab;   /* toast stroke — one step lighter than the hairline */
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -66,6 +66,7 @@ a:hover { color: var(--color-ink); }
 /* ---- Hero ---- */
 
 .hero {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -97,6 +98,14 @@ a:hover { color: var(--color-ink); }
 }
 
 /* ---- Skills sections ---- */
+
+#sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  width: 100%;
+  max-width: var(--content-width);
+}
 
 .skills {
   display: flex;
@@ -182,24 +191,41 @@ a:hover { color: var(--color-ink); }
   transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 80ms ease;
 }
 
-.btn--copy:hover {
-  background: var(--color-hairline);
-  color: var(--color-ink);
-  box-shadow: inset 0 0 0 1.5px var(--color-ink);
-}
+.btn--copy:hover { box-shadow: 0 0 0 1.5px var(--color-ink); }
 .btn--copy:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
 .btn--copy:active { transform: scale(0.98); }
-.btn--copy.is-copied { background: var(--color-pill-copied); }
 
 .btn--soon {
   padding: 12px 20px;
   border: 1px dashed var(--color-ink);
   color: var(--color-ink);
   background: transparent;
-  transition: background 120ms ease;
 }
 
-.btn--soon:hover { background: var(--color-hairline); }
+/* ---- Toast ---- */
+
+.toast {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  align-self: center;
+  background: var(--color-ground);
+  border: 1px solid var(--color-lime-soft);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font: 500 14px/1 var(--font-body);
+  color: var(--color-ink);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(19, 22, 9, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.toast.is-visible { opacity: 1; }
 
 /* ---- Footer ---- */
 
@@ -292,6 +318,14 @@ a:hover { color: var(--color-ink); }
   .skills__label {
     font-size: clamp(14px, 3.8vw, 16px);
     letter-spacing: 0.18em;
+  }
+
+  .toast {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
   }
 
   .skill-row__action { width: 100%; justify-content: flex-start; }
