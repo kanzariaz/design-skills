@@ -18,9 +18,9 @@
   --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
   --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
   --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
-  --text-label: 600 16px/1.4 var(--font-display);
+  --text-label: 600 18px/1.4 var(--font-display);
   --text-section-label: 600 18px/1.4 var(--font-body);
-  --text-footer-label: 600 18px/1.4 var(--font-display);
+  --text-footer-label: 600 18px/1.4 var(--font-body);
   --text-body: 400 17px/1.4 var(--font-display);
   --text-button: 600 14px/1 var(--font-body);
   --tracking-label: 0.09em;
