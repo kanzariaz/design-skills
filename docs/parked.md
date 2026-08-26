@@ -2,9 +2,9 @@
 
 The durable backlog for this project: open decisions and deferred work. Items leave by resolution (edited to a one-line outcome), never silent deletion.
 
-### License choice — parked 2026-08-25
+### License choice — resolved 2026-08-26
 
-The repo carries the MIT license inherited from its first iteration (Copyright (c) 2026 Kanza Riaz) — maximally permissive: anyone may use, copy, modify, and redistribute the skills and site code, including commercially, as long as the copyright notice stays. Open question: keep MIT or switch to something more restrictive (e.g. no commercial reuse — CC BY-NC for content, or PolyForm Noncommercial). Claude's recommendation on record: keep MIT — it matches the "please take these skills" purpose of the project. Swapping later is possible but only applies forward, so deciding sooner is better.
+→ Decided: no license. The MIT file was scaffolding the user never chose; removed 2026-08-26 at their request. Repo is now "all rights reserved" by default (people may view/fork on GitHub per its ToS; npx installs sit in a legal gray zone — Claude noted this and the user decided). Copies already made under MIT keep those rights.
 
 ### npx copy-button + toast — parked 2026-08-25
 
