@@ -206,7 +206,7 @@ a:hover { color: var(--color-ink); }
 
 .toast {
   position: fixed;
-  top: 20px;
+  top: var(--page-pad-top);
   right: 20px;
   z-index: 10;
   display: flex;
@@ -338,7 +338,7 @@ a:hover { color: var(--color-ink); }
   }
 
   .toast {
-    top: 16px;
+    top: 72px; /* matches the mobile .page padding-top */
     right: 16px;
   }
 
