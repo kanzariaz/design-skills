@@ -206,8 +206,8 @@ a:hover { color: var(--color-ink); }
 
 .toast {
   position: fixed;
-  top: calc(var(--page-pad-top) + 14px); /* +14px = title-row top padding, aligns with the heading text */
-  right: 20px;
+  bottom: 40px;
+  right: 40px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -341,7 +341,7 @@ a:hover { color: var(--color-ink); }
   }
 
   .toast {
-    top: 86px; /* mobile .page padding-top (72) + title-row top padding (14) */
+    bottom: 24px;
     right: 16px;
   }
 
