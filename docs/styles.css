@@ -8,7 +8,7 @@
   --color-olive-deep: #31381f;  /* Deep Olive — subheading, row descriptions */
   --color-pill: #060606;
   --color-pill-label: var(--color-ground); /* pill label/icon matches the page ground */
-  --color-lime-soft: #e6efab;   /* toast stroke — one step lighter than the hairline */
+  --color-ground-bright: #fbfee9; /* toast surface — one step brighter than the ground */
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -205,27 +205,44 @@ a:hover { color: var(--color-ink); }
 /* ---- Toast ---- */
 
 .toast {
-  position: absolute;
-  top: -46px;
-  right: 0;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 9px;
-  align-self: center;
-  background: var(--color-ground);
-  border: 1px solid var(--color-lime-soft);
+  gap: 12px;
+  background: var(--color-ground-bright);
   border-radius: 10px;
-  padding: 12px 16px;
-  font: 500 14px/1 var(--font-body);
-  color: var(--color-ink);
+  padding: 14px 18px;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(19, 22, 9, 0.1);
-  opacity: 0;
+  box-shadow: 0 8px 24px rgba(19, 22, 9, 0.18), 0 2px 6px rgba(19, 22, 9, 0.1);
   pointer-events: none;
-  transition: opacity 200ms ease;
+  transform: translateX(calc(100% + 24px));
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.toast.is-visible { opacity: 1; }
+.toast.is-visible { transform: translateX(0); }
+
+.toast__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+  font-variation-settings: var(--display-variation);
+  color: var(--color-ink);
+}
+
+.toast__text {
+  display: block;
+  margin-top: 3px;
+  font: 500 13px/1.2 var(--font-body);
+  color: var(--color-olive-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: none; }
+}
 
 /* ---- Footer ---- */
 
@@ -321,11 +338,8 @@ a:hover { color: var(--color-ink); }
   }
 
   .toast {
-    position: fixed;
     top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    right: 16px;
   }
 
   .skill-row__action { width: 100%; justify-content: flex-start; }

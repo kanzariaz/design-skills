@@ -8,9 +8,10 @@ const COPY_ICON = '<svg class="btn__icon" viewBox="0 0 16 16" fill="none" xmlns=
 
 let toastTimer = null;
 
-function showToast(message) {
+function showToast(title, text) {
   const toast = document.getElementById('toast');
-  toast.querySelector('.toast__text').textContent = message;
+  toast.querySelector('.toast__title').textContent = title;
+  toast.querySelector('.toast__text').textContent = text;
   toast.classList.add('is-visible');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 4000);
@@ -39,10 +40,10 @@ function renderRow(skill) {
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(`npx skills add ${REPO} -s ${skill.id}`);
-        showToast(`${skill.name} copied — paste into Claude Code or your terminal.`);
+        showToast(`${skill.name} copied`, 'paste into Claude Code or your terminal');
         window.tdSignal?.('copySkill', { skill: skill.id });
       } catch {
-        showToast('Copy failed — try again.');
+        showToast('Copy failed', 'try again');
       }
     });
     action.appendChild(btn);
