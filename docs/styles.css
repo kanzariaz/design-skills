@@ -1,16 +1,14 @@
-/* Design tokens — "peach & navy" (E) colorway trial on the test branch */
+/* Design tokens — "sage" (A) colorway trial on the test branch: current hue, chroma turned down */
 :root {
   /* Color styles */
-  --color-ground: #f7ede2;      /* warm cream-peach ground */
-  --color-hairline: #d9d0d6;    /* muted navy-tinted hairline */
-  --color-ink: #1e3a8c;         /* deep indigo ink */
-  --color-olive: #5f6cae;       /* soft indigo — footer links/labels */
-  --color-olive-deep: #4a5490;  /* secondary text — subheading, row descriptions */
-  --color-pill: #1e3a8c;
-  --color-pill-label: #fdf7ef;  /* pill label/icon — bright cream */
-  --color-card: #fdf7ef;        /* outlined card + toast surface */
-  --color-card-stroke: #b3b9ce; /* navy-tinted outline on cards and toast */
-  --color-toast-stroke: var(--color-card-stroke);
+  --color-ground: #f2f5e4;      /* sage ground */
+  --color-hairline: #d5ddb4;    /* muted sage hairline */
+  --color-ink: #171a0e;         /* near-black green ink */
+  --color-olive: #565c40;       /* muted olive — footer links/labels */
+  --color-olive-deep: #3a4128;  /* secondary text — subheading, row descriptions */
+  --color-pill: #0a0c05;
+  --color-pill-label: var(--color-ground); /* pill label/icon matches the ground */
+  --color-toast-stroke: #e3e9cc;  /* barely-there sage edge on the toast */
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -18,7 +16,7 @@
 
   /* Text styles */
   --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
-  --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
+  --text-subtitle: 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
   --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
   --text-label: 600 16px/1.4 var(--font-body);
   --text-section-label: 700 18px/1.4 var(--font-body);
@@ -127,10 +125,7 @@ a:hover { color: var(--color-ink); }
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: var(--color-card);
-  border: 1px solid var(--color-card-stroke);
-  border-radius: 12px;
-  padding: 0 24px;
+  border-top: 1px solid var(--color-hairline);
 }
 
 .skill-row {
@@ -141,8 +136,6 @@ a:hover { color: var(--color-ink); }
   padding: 22px 0;
   border-bottom: 1px solid var(--color-hairline);
 }
-
-.skill-row:last-child { border-bottom: 0; }
 
 .skill-row__name {
   margin: 0;
@@ -219,12 +212,12 @@ a:hover { color: var(--color-ink); }
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--color-card);
+  background: var(--color-ground);
   border: 1px solid var(--color-toast-stroke);
   border-radius: 10px;
   padding: 18px 30px 22px 18px;
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(30, 58, 140, 0.15), 0 1px 4px rgba(30, 58, 140, 0.08); /* navy-tinted to sit in the peach ambience */
+  box-shadow: 0 4px 14px rgba(46, 52, 30, 0.15), 0 1px 4px rgba(46, 52, 30, 0.08); /* olive-tinted to sit in the sage ambience */
   pointer-events: none;
   transform: translateX(calc(100% + 24px));
   transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
