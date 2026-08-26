@@ -21,7 +21,7 @@
   --text-label: 600 16px/1.4 var(--font-display);
   --text-section-label: 600 18px/1.4 var(--font-body);
   --text-footer-label: 600 18px/1.4 var(--font-display);
-  --text-body: 400 16px/1.4 var(--font-display);
+  --text-body: 400 17px/1.4 var(--font-display);
   --text-button: 600 14px/1 var(--font-body);
   --tracking-label: 0.09em;
 
@@ -152,7 +152,7 @@ a:hover { color: var(--color-ink); }
   flex: 1 0 0;
   min-width: 0;
   font: var(--text-body);
-  font-size: 17px;
+  font-size: 18px;
   color: var(--color-olive-deep);
 }
 
@@ -333,7 +333,7 @@ a:hover { color: var(--color-ink); }
 
   .skill-row__name { width: 100%; }
 
-  .skill-row__desc { flex: 1 1 100%; font-size: 16px; }
+  .skill-row__desc { flex: 1 1 100%; font-size: 17px; }
 
   .skills__label {
     font-size: clamp(14px, 3.8vw, 16px);

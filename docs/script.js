@@ -75,7 +75,7 @@ function renderRow(skill) {
 }
 
 async function init() {
-  const res = await fetch('skills.json');
+  const res = await fetch('skills.json', { cache: 'no-cache' });
   const data = await res.json();
   const mount = document.getElementById('sections');
 
