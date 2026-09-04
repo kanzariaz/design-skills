@@ -150,6 +150,7 @@ if (signupForm) {
     const email = input.value.trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setNote('Enter a valid email address', true);
+      window.tdSignal?.('signupError', { kind: 'invalid' });
       input.focus();
       return;
     }
@@ -175,8 +176,17 @@ if (signupForm) {
       if (!res.ok) throw new Error(String(res.status));
       markSubscribed();
       setNote("You're on the list — check your email to confirm.");
+      window.tdSignal?.('signupSuccess', { source: signupSource || 'direct' });
     } catch {
       setNote('Something went wrong — try again in a moment.', true);
+      window.tdSignal?.('signupError', { kind: 'network' });
     }
   });
 }
+
+/* ---- Social link signals ---- */
+document.querySelectorAll('.social').forEach((link) => {
+  link.addEventListener('click', () => {
+    window.tdSignal?.('socialClick', { platform: link.getAttribute('aria-label') });
+  });
+});
