@@ -123,8 +123,8 @@ async function init() {
 init();
 
 /* ---- Email signup ---- */
-/* Paste the subscribe endpoint (Cloudflare Worker proxying beehiiv) here when it exists. */
-const SIGNUP_ENDPOINT = '';
+/* Kit (ConvertKit) form endpoint — accepts direct posts from the browser. */
+const SIGNUP_ENDPOINT = 'https://app.kit.com/forms/9881799/subscriptions';
 
 const signupForm = document.getElementById('signup-form');
 if (signupForm) {
@@ -164,14 +164,17 @@ if (signupForm) {
       return;
     }
     try {
+      const body = new FormData();
+      body.append('email_address', email);
+      body.append('fields[source]', signupSource || 'direct');
       const res = await fetch(SIGNUP_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: signupSource || 'direct' })
+        headers: { Accept: 'application/json' },
+        body
       });
       if (!res.ok) throw new Error(String(res.status));
       markSubscribed();
-      setNote("You're on the list. One email when a new skill ships.");
+      setNote("You're on the list — check your email to confirm.");
     } catch {
       setNote('Something went wrong — try again in a moment.', true);
     }
