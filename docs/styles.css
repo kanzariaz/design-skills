@@ -16,7 +16,7 @@
 
   /* Text styles */
   --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
-  --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
+  --text-subtitle: 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
   --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
   --text-label: 600 18px/1.4 var(--font-display);
   --text-section-label: 600 18px/1.4 var(--font-body);
@@ -129,7 +129,9 @@ a:hover { color: var(--color-ink); }
 }
 
 .skill-row {
+  position: relative; /* anchors the coming-soon chip's wide-screen gutter placement */
   display: flex;
+  flex-wrap: wrap; /* only the full-width chip line ever wraps; regular content fits one line */
   align-items: center;
   gap: 24px;
   width: 100%;
@@ -144,7 +146,9 @@ a:hover { color: var(--color-ink); }
   font: var(--text-skill-name);
   font-variation-settings: var(--display-variation);
   color: var(--color-ink);
-  white-space: nowrap;
+  /* a name longer than its column wraps (hyphens are break points) instead
+     of running into the description; the row gap stays the minimum 24px */
+  overflow-wrap: break-word;
 }
 
 .skill-row__desc {
@@ -154,6 +158,48 @@ a:hover { color: var(--color-ink); }
   font: var(--text-body);
   font-size: 18px;
   color: var(--color-olive-deep);
+}
+
+/* Coming-soon chip: an outlined annotation. Narrow screens: its own line at
+   the TOP of the row (order -1, full-width line). Wide screens (>=1080px):
+   hangs in the left gutter with a hairline connector pointing at the name's
+   centerline. */
+.skill-row__chipwrap {
+  order: -1;
+  flex: 0 0 100%;
+  margin-bottom: -8px; /* pulls the name line closer; the row's 24px gap is too much here */
+}
+
+.skill-row__chip {
+  display: inline-block;
+  padding: 6px 11px;
+  border: 1px dotted #a9b381; /* midpoint between the hairline and olive */
+  border-radius: 11px;
+  background: #eef2da; /* a breath darker than the ground — barely-there fill */
+  font: 600 10px/1.3 var(--font-body);
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+@media (min-width: 1080px) {
+  .skill-row__chipwrap {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 8px);
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    order: 0;
+    margin: 0;
+  }
+
+  .skill-row__chipwrap::after {
+    content: '';
+    width: 18px;
+    border-top: 1px dotted #a9b381; /* same stroke as the chip — one dotted annotation, chip through pointer */
+  }
 }
 
 .skill-row__action {
@@ -202,7 +248,110 @@ a:hover { color: var(--color-ink); }
   background: transparent;
 }
 
+.btn--notify {
+  gap: 5px;
+  padding: 11px 16px;
+  border-style: solid; /* a working action gets a confident stroke; dotted now belongs to the status chip */
+  border-color: var(--color-olive); /* the whole coming-soon cluster shares one stroke color */
+  background: #eef2da; /* same barely-there fill as the chips and footer card */
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.btn--notify:hover { background: #e7edd2; }
+.btn--notify:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+.btn--notify:active { transform: scale(0.98); }
+
 .btn__label--mobile { display: none; }
+
+/* ---- Email signup ---- */
+
+.signup__title {
+  margin: 0 0 14px;
+  font: 800 clamp(22px, 5vw, 26px)/1.16 var(--font-display);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-ink);
+}
+
+.signup__subtitle {
+  margin: 0 0 26px;
+  font: 400 18px/1.4 var(--font-display);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-olive-deep);
+}
+
+.signup__form { width: 100%; }
+
+.signup__fields {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 4px 4px 16px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 24px;
+  background: var(--color-ground); /* rests in the page ground; light means active */
+  transition: background 160ms ease;
+}
+
+.signup__fields[hidden] { display: none; }
+
+.signup__fields:focus-within {
+  background: #fbfcf1; /* lights up to paper while typing */
+  border-color: var(--color-olive-deep);
+}
+
+.signup__fields:focus-within .signup__input::placeholder { opacity: 0.45; }
+
+.signup__input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px 6px 0;
+  border: 0;
+  background: transparent;
+  font: 400 16px/1.4 var(--font-display);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-ink);
+  outline: none;
+}
+
+.signup__input::placeholder { color: var(--color-olive); opacity: 0.8; transition: opacity 160ms ease; }
+
+.signup__btn {
+  flex-shrink: 0;
+  height: 38px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 19px;
+  background: var(--color-pill);
+  color: var(--color-pill-label);
+  font: var(--text-button);
+  cursor: pointer;
+  transition: box-shadow 120ms ease, transform 80ms ease;
+}
+
+.signup__btn:disabled {
+  background: var(--color-hairline);
+  color: var(--color-olive-deep);
+  cursor: default;
+}
+
+.signup__btn:disabled:hover { box-shadow: none; }
+.signup__btn:hover { box-shadow: 0 0 0 1.5px var(--color-ink); }
+.signup__btn:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+.signup__btn:active { transform: scale(0.98); }
+
+.signup__note {
+  margin: 10px 2px 0;
+  font: 400 18px/1.4 var(--font-display);
+  font-variation-settings: var(--display-variation);
+  color: var(--color-olive-deep);
+  min-height: 1.4em;
+}
+
+.signup__note.is-error {
+  font: 500 14px/1.4 var(--font-body);
+  color: #8a3b25;
+}
 
 /* ---- Toast ---- */
 
@@ -214,12 +363,11 @@ a:hover { color: var(--color-ink); }
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--color-ground);
-  border: 1px solid var(--color-toast-stroke);
+  background: #eef2da; /* same fill and stroke as the footer card */
+  border: 1px solid var(--color-hairline);
   border-radius: 10px;
   padding: 18px 30px 22px 18px;
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(46, 52, 30, 0.15), 0 1px 4px rgba(46, 52, 30, 0.08); /* olive-tinted to sit in the sage ambience */
   pointer-events: none;
   transform: translateX(calc(100% + 24px));
   transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -264,19 +412,37 @@ a:hover { color: var(--color-ink); }
   max-width: var(--content-width);
 }
 
-.footer__row {
+/* The closing card: centered in the band (the page's one centered moment),
+   content inside stays left-aligned to keep the page's rhythm. */
+.footer__card {
+  width: 100%;
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  padding: 34px 36px;
+  background: #eef2da; /* same barely-there fill as the coming-soon chips */
+}
+
+.footer__meta {
   display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.socials--stacked {
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  width: 100%;
+  gap: 12px;
 }
+
 
 .footer__label {
   margin: 0;
-  font: var(--text-footer-label);
+  font: 400 16px/1.4 var(--font-display);
+  font-variation-settings: var(--display-variation);
   color: var(--color-olive);
-  white-space: nowrap;
 }
 
 .socials {
@@ -337,12 +503,21 @@ a:hover { color: var(--color-ink); }
 
   .btn { width: 104px; }
 
+  /* Mobile button system — secondary (Copy): ink outline on the faint shared
+     fill; primary (Notify): no outline, a step-stronger fill. */
   .btn--copy {
-    background: transparent;
+    background: #eef2da;
     color: var(--color-ink);
     border: 1px solid var(--color-ink);
     padding-top: 11px;
-    padding-bottom: 11px; /* keeps 40px height with the added border */
+    padding-bottom: 11px; /* keeps height with the added border */
+  }
+
+  .btn--notify {
+    border: 0;
+    background: #e7edd2;
+    padding-top: 12px;
+    padding-bottom: 12px; /* border removed; padding keeps the 38px height */
   }
 
   .btn__label--desktop { display: none; }
@@ -389,3 +564,32 @@ a:hover { color: var(--color-ink); }
 
   .footer { padding-bottom: 72px; }
 }
+
+/* Footer socials: bare icon marks, no tiles (platform names carried by
+   aria-label + title). Overrides the mobile 2-up treatment for this variant. */
+.socials--bare,
+.socials--bare.socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  width: auto;
+}
+
+.socials--bare .social {
+  justify-content: center;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.socials--bare .social .social__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-olive);
+}
+
+.socials--bare .social:hover .social__icon { color: var(--color-ink); }

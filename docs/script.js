@@ -6,6 +6,12 @@ const REPO = 'kanzariaz/design-skills';
 
 const COPY_ICON = '<svg class="btn__icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M10.5 3.5V3a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>';
 
+const BELL_ICON = '<svg class="btn__icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.7 10.8H3.3c.9-.9 1.4-1.6 1.4-4.1 0-1.9 1.4-3.4 3.3-3.4s3.3 1.5 3.3 3.4c0 2.5.5 3.2 1.4 4.1z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.7 13a1.5 1.5 0 0 0 2.6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>';
+
+// Which skill's Notify Me button brought the visitor to the signup — sent
+// with the subscription so launches can be prioritized by real interest.
+let signupSource = '';
+
 let toastTimer = null;
 
 function showToast(title, text) {
@@ -64,10 +70,27 @@ function renderRow(skill) {
     });
     action.appendChild(btn);
   } else {
-    const soon = document.createElement('span');
-    soon.className = 'btn btn--soon';
-    soon.innerHTML = '<span class="btn__label--desktop">Coming Soon</span><span class="btn__label--mobile">Soon</span>';
-    action.appendChild(soon);
+    const chipwrap = document.createElement('span');
+    chipwrap.className = 'skill-row__chipwrap';
+    const chip = document.createElement('span');
+    chip.className = 'skill-row__chip';
+    chip.textContent = 'COMING SOON';
+    chipwrap.appendChild(chip);
+    row.appendChild(chipwrap);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn btn--soon btn--notify';
+    btn.type = 'button';
+    btn.innerHTML = BELL_ICON + '<span class="btn__label btn__label--desktop">Notify Me</span><span class="btn__label btn__label--mobile">Notify</span>';
+    btn.addEventListener('click', () => {
+      signupSource = skill.id;
+      window.tdSignal?.('notifyClick', { skill: skill.id });
+      const signup = document.querySelector('.footer__signup');
+      signup?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      /* focusing lights the capsule — its focus state is the arrival cue */
+      setTimeout(() => document.querySelector('.signup__input')?.focus({ preventScroll: true }), 600);
+    });
+    action.appendChild(btn);
   }
 
   row.append(name, desc, action);
@@ -94,6 +117,63 @@ async function init() {
     el.append(label, table);
     mount.appendChild(el);
   }
+
 }
 
 init();
+
+/* ---- Email signup ---- */
+/* Paste the subscribe endpoint (Cloudflare Worker proxying beehiiv) here when it exists. */
+const SIGNUP_ENDPOINT = '';
+
+const signupForm = document.getElementById('signup-form');
+if (signupForm) {
+  const capsule = signupForm.querySelector('.signup__fields');
+  const input = signupForm.querySelector('.signup__input');
+  const note = document.getElementById('signup-note');
+  const setNote = (text, isError) => {
+    note.textContent = text;
+    note.classList.toggle('is-error', Boolean(isError));
+  };
+
+  const markSubscribed = () => {
+    input.readOnly = true;
+    signupForm.querySelector('.signup__btn').disabled = true;
+  };
+
+  input.addEventListener('input', () => {
+    if (note.classList.contains('is-error')) setNote('');
+  });
+
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setNote('Enter a valid email address', true);
+      input.focus();
+      return;
+    }
+    setNote('');
+    if (!SIGNUP_ENDPOINT) {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        markSubscribed();
+        setNote("You're on the list. One email when a new skill ships. (Preview only — signup isn't wired up yet.)");
+      } else {
+        setNote("Signups aren't open quite yet — check back soon.", true);
+      }
+      return;
+    }
+    try {
+      const res = await fetch(SIGNUP_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: signupSource || 'direct' })
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      markSubscribed();
+      setNote("You're on the list. One email when a new skill ships.");
+    } catch {
+      setNote('Something went wrong — try again in a moment.', true);
+    }
+  });
+}

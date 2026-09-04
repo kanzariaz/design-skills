@@ -33,6 +33,12 @@
       "label": "DESIGN EXECUTION",
       "skills": [
         {
+          "id": "save-rationale",
+          "name": "/save-rationale",
+          "description": "Distill a session's design decisions and their rationale into your repo's context files, so the next chat starts pre-loaded",
+          "status": "copy"
+        },
+        {
           "id": "design-eval",
           "name": "/design-eval",
           "description": "Audit a component, a page, or an entire flow against your design system; resolve inconsistencies, add new components, styles or variants",
