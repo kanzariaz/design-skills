@@ -21,8 +21,9 @@
   --text-label: 600 18px/1.4 var(--font-display);
   --text-section-label: 600 18px/1.4 var(--font-body);
   --text-footer-label: 600 18px/1.4 var(--font-body);
-  --text-body: 400 17px/1.4 var(--font-display);
+  --text-body: 400 18px/1.4 var(--font-display);
   --text-button: 600 14px/1 var(--font-body);
+  --text-caption: 600 14px/1.4 var(--font-body); /* error notes, small sans annotations */
   --tracking-label: 0.09em;
 
   --content-width: 800px;       /* max width of every section's content */
@@ -156,7 +157,6 @@ a:hover { color: var(--color-ink); }
   flex: 1 0 0;
   min-width: 0;
   font: var(--text-body);
-  font-size: 18px;
   color: var(--color-olive-deep);
 }
 
@@ -268,14 +268,15 @@ a:hover { color: var(--color-ink); }
 
 .signup__title {
   margin: 0 0 14px;
-  font: 800 clamp(22px, 5vw, 26px)/1.16 var(--font-display);
+  font: var(--text-skill-name);
+  font-weight: 800; /* skill-name ramp, card-heading weight */
   font-variation-settings: var(--display-variation);
   color: var(--color-ink);
 }
 
 .signup__subtitle {
   margin: 0 0 26px;
-  font: 400 18px/1.4 var(--font-display);
+  font: var(--text-body);
   font-variation-settings: var(--display-variation);
   color: var(--color-olive-deep);
 }
@@ -308,7 +309,7 @@ a:hover { color: var(--color-ink); }
   padding: 6px 8px 6px 0;
   border: 0;
   background: transparent;
-  font: 400 16px/1.4 var(--font-display);
+  font: var(--text-body);
   font-variation-settings: var(--display-variation);
   color: var(--color-ink);
   outline: none;
@@ -342,14 +343,14 @@ a:hover { color: var(--color-ink); }
 
 .signup__note {
   margin: 10px 2px 0;
-  font: 400 18px/1.4 var(--font-display);
+  font: var(--text-body);
   font-variation-settings: var(--display-variation);
   color: var(--color-olive-deep);
   min-height: 1.4em;
 }
 
 .signup__note.is-error {
-  font: 500 14px/1.4 var(--font-body);
+  font: var(--text-caption);
   color: #8a3b25;
 }
 
@@ -389,7 +390,7 @@ a:hover { color: var(--color-ink); }
   margin-top: 7px;
   max-width: 350px;
   white-space: normal;
-  font: 400 16px/1.35 var(--font-display); /* body size, serif */
+  font: var(--text-body); /* body size, serif */
   color: var(--color-olive-deep);
 }
 
@@ -440,7 +441,7 @@ a:hover { color: var(--color-ink); }
 
 .footer__label {
   margin: 0;
-  font: 400 16px/1.4 var(--font-display);
+  font: var(--text-body);
   font-variation-settings: var(--display-variation);
   color: var(--color-olive);
 }
@@ -587,8 +588,8 @@ a:hover { color: var(--color-ink); }
 }
 
 .socials--bare .social .social__icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   color: var(--color-olive);
 }
 

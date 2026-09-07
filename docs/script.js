@@ -136,13 +136,20 @@ if (signupForm) {
     note.classList.toggle('is-error', Boolean(isError));
   };
 
+  const submitBtn = signupForm.querySelector('.signup__btn');
+
+  /* Subscribing only disables the button; the field stays editable so a
+     visitor can correct or change their email — any edit re-arms the form. */
   const markSubscribed = () => {
-    input.readOnly = true;
-    signupForm.querySelector('.signup__btn').disabled = true;
+    submitBtn.disabled = true;
   };
 
   input.addEventListener('input', () => {
     if (note.classList.contains('is-error')) setNote('');
+    if (submitBtn.disabled) {
+      submitBtn.disabled = false;
+      setNote('');
+    }
   });
 
   signupForm.addEventListener('submit', async (e) => {
