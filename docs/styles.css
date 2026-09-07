@@ -130,9 +130,8 @@ a:hover { color: var(--color-ink); }
 }
 
 .skill-row {
-  position: relative; /* anchors the coming-soon chip's wide-screen gutter placement */
+  position: relative; /* anchors the coming-soon chip on the row's top rail */
   display: flex;
-  flex-wrap: wrap; /* only the full-width chip line ever wraps; regular content fits one line */
   align-items: center;
   gap: 24px;
   width: 100%;
@@ -160,47 +159,33 @@ a:hover { color: var(--color-ink); }
   color: var(--color-olive-deep);
 }
 
-/* Coming-soon chip: an outlined annotation. Narrow screens: its own line at
-   the TOP of the row (order -1, full-width line). Wide screens (>=1080px):
-   hangs in the left gutter with a hairline connector pointing at the name's
-   centerline. */
+/* Coming-soon chip: set into the row's top rail — it straddles the divider
+   above its row, ground-filled to mask the line, drawn in the divider's own
+   hairline. Works identically at every width. */
 .skill-row__chipwrap {
-  order: -1;
-  flex: 0 0 100%;
-  margin-bottom: -8px; /* pulls the name line closer; the row's 24px gap is too much here */
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
 }
 
 .skill-row__chip {
   display: inline-block;
-  padding: 6px 11px;
-  border: 1px dotted #a9b381; /* midpoint between the hairline and olive */
-  border-radius: 11px;
-  background: #eef2da; /* a breath darker than the ground — barely-there fill */
+  padding: 8px 10px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 7px;
+  background: var(--color-ground);
   font: 600 10px/1.3 var(--font-body);
   letter-spacing: 0.06em;
-  color: var(--color-ink);
+  color: var(--color-olive);
   white-space: nowrap;
 }
 
-@media (min-width: 1080px) {
-  .skill-row__chipwrap {
-    position: absolute;
-    top: 50%;
-    right: calc(100% + 8px);
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    flex: none;
-    order: 0;
-    margin: 0;
-  }
-
-  .skill-row__chipwrap::after {
-    content: '';
-    width: 18px;
-    border-top: 1px dotted #a9b381; /* same stroke as the chip — one dotted annotation, chip through pointer */
-  }
-}
+/* The chip sits on the boundary, so both neighbors yield to it equally:
+   +4px on the soon row's top and +4px on the bottom of the row above.
+   The chip is centered on the rail, so the clearance comes out symmetric. */
+.skill-row--soon { padding-top: 26px; }
+.skill-row:has(+ .skill-row--soon) { padding-bottom: 26px; }
 
 .skill-row__action {
   display: flex;

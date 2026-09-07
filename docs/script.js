@@ -70,6 +70,7 @@ function renderRow(skill) {
     });
     action.appendChild(btn);
   } else {
+    row.classList.add('skill-row--soon');
     const chipwrap = document.createElement('span');
     chipwrap.className = 'skill-row__chipwrap';
     const chip = document.createElement('span');
