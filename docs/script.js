@@ -183,7 +183,7 @@ if (signupForm) {
       });
       if (!res.ok) throw new Error(String(res.status));
       markSubscribed();
-      setNote("You're on the list – check your email to confirm.");
+      setNote("You're on the list – new skills land in your inbox from now on.");
       window.tdSignal?.('signupSuccess', { source: signupSource || 'direct' });
     } catch {
       setNote('Something went wrong – try again in a moment.', true);
