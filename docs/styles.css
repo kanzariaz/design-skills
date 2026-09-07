@@ -9,6 +9,8 @@
   --color-pill: #0a0c05;
   --color-pill-label: var(--color-ground); /* pill label/icon matches the ground */
   --color-toast-stroke: #e3e9cc;  /* barely-there sage edge on the toast */
+  --color-success: #3e7a1c;     /* success notes -- kin to the old copy-button green */
+  --color-error: #8a3b25;       /* error notes -- muted rust */
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -324,16 +326,35 @@ a:hover { color: var(--color-ink); }
 .signup__btn:active { transform: scale(0.98); }
 
 .signup__note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 10px 2px 0;
-  font: var(--text-body);
+  font: 400 16px/1.4 var(--font-display);
   font-variation-settings: var(--display-variation);
   color: var(--color-olive-deep);
   min-height: 1.4em;
 }
 
-.signup__note.is-error {
-  font: var(--text-caption);
-  color: #8a3b25;
+.signup__note.is-success { color: var(--color-success); }
+.signup__note.is-error { color: var(--color-error); }
+
+.signup__note.is-success::before,
+.signup__note.is-error::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.signup__note.is-success::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233e7a1c'/%3E%3Cpath d='M6.2 11.4l3.2 3.2 6.4-6.9' fill='none' stroke='%23f2f5e4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.signup__note.is-error::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='11' fill='%238a3b25'/%3E%3Cpath d='M11 5.5v6.2' fill='none' stroke='%23f2f5e4' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='11' cy='15.9' r='1.4' fill='%23f2f5e4'/%3E%3C/svg%3E");
 }
 
 /* ---- Toast ---- */

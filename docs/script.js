@@ -134,7 +134,8 @@ if (signupForm) {
   const note = document.getElementById('signup-note');
   const setNote = (text, isError) => {
     note.textContent = text;
-    note.classList.toggle('is-error', Boolean(isError));
+    note.classList.toggle('is-error', Boolean(text) && Boolean(isError));
+    note.classList.toggle('is-success', Boolean(text) && !isError);
   };
 
   const submitBtn = signupForm.querySelector('.signup__btn');
@@ -166,7 +167,7 @@ if (signupForm) {
     if (!SIGNUP_ENDPOINT) {
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         markSubscribed();
-        setNote("You're on the list. One email when a new skill ships. (Preview only – signup isn't wired up yet.)");
+        setNote("You're on the list!");
       } else {
         setNote("Signups aren't open quite yet – check back soon.", true);
       }
@@ -183,7 +184,7 @@ if (signupForm) {
       });
       if (!res.ok) throw new Error(String(res.status));
       markSubscribed();
-      setNote("You're on the list – new skills land in your inbox from now on.");
+      setNote("You're on the list!");
       window.tdSignal?.('signupSuccess', { source: signupSource || 'direct' });
     } catch {
       setNote('Something went wrong – try again in a moment.', true);
