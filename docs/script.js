@@ -165,9 +165,9 @@ if (signupForm) {
     if (!SIGNUP_ENDPOINT) {
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         markSubscribed();
-        setNote("You're on the list. One email when a new skill ships. (Preview only — signup isn't wired up yet.)");
+        setNote("You're on the list. One email when a new skill ships. (Preview only – signup isn't wired up yet.)");
       } else {
-        setNote("Signups aren't open quite yet — check back soon.", true);
+        setNote("Signups aren't open quite yet – check back soon.", true);
       }
       return;
     }
@@ -182,10 +182,10 @@ if (signupForm) {
       });
       if (!res.ok) throw new Error(String(res.status));
       markSubscribed();
-      setNote("You're on the list — check your email to confirm.");
+      setNote("You're on the list – check your email to confirm.");
       window.tdSignal?.('signupSuccess', { source: signupSource || 'direct' });
     } catch {
-      setNote('Something went wrong — try again in a moment.', true);
+      setNote('Something went wrong – try again in a moment.', true);
       window.tdSignal?.('signupError', { kind: 'network' });
     }
   });
