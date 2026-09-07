@@ -16,7 +16,8 @@
 
   /* Text styles */
   --text-title: 700 clamp(30px, 8vw, 44px)/1.23 var(--font-display);
-  --text-subtitle: 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
+  --text-subtitle: italic 400 clamp(17px, 4.8vw, 22px)/1.25 var(--font-display);
+  --text-card-title: 700 clamp(24px, 6vw, 30px)/1.16 var(--font-display); /* signup heading — between skill names and the page title */
   --text-skill-name: 600 clamp(21px, 6vw, 25px)/1.16 var(--font-display);
   --text-label: 600 18px/1.4 var(--font-display);
   --text-section-label: 600 18px/1.4 var(--font-body);
@@ -268,8 +269,7 @@ a:hover { color: var(--color-ink); }
 
 .signup__title {
   margin: 0 0 14px;
-  font: var(--text-skill-name);
-  font-weight: 800; /* skill-name ramp, card-heading weight */
+  font: var(--text-card-title);
   font-variation-settings: var(--display-variation);
   color: var(--color-ink);
 }
@@ -277,6 +277,7 @@ a:hover { color: var(--color-ink); }
 .signup__subtitle {
   margin: 0 0 26px;
   font: var(--text-body);
+  font-style: italic;
   font-variation-settings: var(--display-variation);
   color: var(--color-olive-deep);
 }
@@ -286,19 +287,18 @@ a:hover { color: var(--color-ink); }
 .signup__fields {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: min(420px, 100%);
   padding: 4px 4px 4px 16px;
-  border: 1px solid var(--color-hairline);
+  border: 1px solid var(--color-olive-deep); /* the section's one drawn object */
   border-radius: 24px;
-  background: var(--color-ground); /* rests in the page ground; light means active */
+  background: #eef2da; /* rests on the Notify buttons' shared fill */
   transition: background 160ms ease;
 }
 
 .signup__fields[hidden] { display: none; }
 
 .signup__fields:focus-within {
-  background: #fbfcf1; /* lights up to paper while typing */
-  border-color: var(--color-olive-deep);
+  background: #ffffff; /* the last step brighter while typing */
 }
 
 .signup__fields:focus-within .signup__input::placeholder { opacity: 0.45; }
@@ -309,8 +309,7 @@ a:hover { color: var(--color-ink); }
   padding: 6px 8px 6px 0;
   border: 0;
   background: transparent;
-  font: var(--text-body);
-  font-variation-settings: var(--display-variation);
+  font: 400 16px/1.4 var(--font-body); /* an email address is data — control voice */
   color: var(--color-ink);
   outline: none;
 }
@@ -415,12 +414,13 @@ a:hover { color: var(--color-ink); }
 
 /* The closing card: centered in the band (the page's one centered moment),
    content inside stays left-aligned to keep the page's rhythm. */
+/* The signup is a flat section in the skill-table grammar: hairline rails
+   top and bottom, content flush to the band, page ground throughout. */
 .footer__card {
   width: 100%;
-  border: 1px solid var(--color-hairline);
-  border-radius: 16px;
-  padding: 34px 36px;
-  background: #eef2da; /* same barely-there fill as the coming-soon chips */
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+  padding: 48px 0 34px;
 }
 
 .footer__meta {
@@ -443,7 +443,7 @@ a:hover { color: var(--color-ink); }
   margin: 0;
   font: var(--text-body);
   font-variation-settings: var(--display-variation);
-  color: var(--color-olive);
+  color: #78825c; /* a step lighter than olive — the quietest line on the page */
 }
 
 .socials {
